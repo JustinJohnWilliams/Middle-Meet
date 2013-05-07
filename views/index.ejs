@@ -3,7 +3,7 @@
 <html lang="en">
    <head>
     <meta charset="utf-8">
-    <title>Multi-Libs</title>
+    <title>QnA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -31,72 +31,35 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
           
-          <a class="brand">Multi-Libs</a>
+          <a class="brand">QnA</a>
           
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="javascript:createGame();">Create Game</a></li>
             </ul>
           </div>
-
         </div>
       </div>
     </div>
     <div class="container">
-      <div class="row" id="availableGames">
+      <div class="row">
+        <input type="button" value="create" id="create" class="btn btn-primary" />
       </div>
     </div>
   </body>
   <script type="text/javascript">
-    var playerId = GUID();
-    var gameId = GUID();
-    $(document).ready(function() {
-      PollForGames();
+    $(function() {
+      $("#create").click(save);
     });
 
-    function PollForGames() {
-      $('#availableGames').empty();
-      GetGames();
-      setTimeout(PollForGames, 5000);   
+    function save() {
+      $.post("/save", { message: "hi" });
     }
-
-    function GetGames(){
-      var gameTemplate = '<div class="well well-small"> <a href="javascript:;" data-gameId="${gameId}">Join Game - [${name}]</a> </div>';
-
-      $.getJSON("list", function(games) {
-        jQuery.each(games, function(game) {
-          var gameElement = $.tmpl(gameTemplate, {
-            gameId: games[game].id,
-            name: games[game].name
-          });
-
-          $(gameElement).click(function() {
-              var gameId = $(gameElement).find('a').attr('data-gameId');
-              $.cookie('gameId', gameId);
-              $.post("joingame", { gameId: gameId, playerId: playerId, playerName: "web guy" }, function() {
-              window.location.replace("/game?gameId=" + gameId + "&playerId=" + playerId);
-            });
-          });
-
-          $('#availableGames').append(gameElement);
-        });
-      });
-    }
-
-    function createGame() {
-      $.post("add", { id: gameId, name: "browser game" }, function() {
-          $.post("joingame", { gameId: gameId, playerId: playerId, playerName: "web guy" }, function() { 
-                window.location.replace("/game?gameId=" + gameId + "&playerId=" + playerId);
-            });
-      });
-    };
 
     function GUID(){
       var S4 = function() {

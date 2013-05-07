@@ -16,6 +16,11 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
+app.post('/save', function(req, res) {
+  console.log('yay posting');
+});
+
+/*
 app.get('/game', function (req, res) {
   res.render('game');
 });
@@ -98,15 +103,4 @@ app.post('/readyForNextRound', function(req, res){
   res.write(JSON.stringify(game));
   res.end();
 });
-
-//list -done
-//add -done
-//joingame -done
-//getgamebyid -done
-//selectcard
-//selectwinner
-//game=  player 1-4, czarId, hands, current black, score for every player
-//last round summary / round complete
-
-
-
+*/
