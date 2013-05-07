@@ -51,11 +51,17 @@
         <input type="text" id="questionText" />
         <input type="button" value="create" id="create" class="btn btn-primary" />
       </div>
+      <div class="row" id="questions">
+      </div>
     </div>
   </body>
   <script type="text/javascript">
     $(function() {
       $("#create").click(save);
+      $.getJSON("/questions", function(data) {
+        $("#questions").html("");
+        $("#questions").append(_.template($("#questionsTemplate").html(), data));
+      }); 
     });
 
     function save() {
@@ -71,6 +77,14 @@
     };
 
   </script>
+
+  <script type="underscore/template" id="questionsTemplate">
+    <% _.each(questions, function(question) { %>
+      <div class='row'>
+        <%= question.text %>
+      </div>
+    <% }); %>
+</script>
 </html>
 
 
