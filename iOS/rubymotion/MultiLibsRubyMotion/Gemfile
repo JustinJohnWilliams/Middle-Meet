@@ -1,5 +1,0 @@
-source :rubygems
-
-gem 'bubble-wrap', :require => %w[bubble-wrap/core
-                                  bubble-wrap/http
-                                  bubble-wrap/reactor]

@@ -1,3 +1,3 @@
-task :copy do
-  sh "cp -rf ./Web/. ../heroku/dry-peak-5299"
+task :server do
+  sh "\"c:\\Program Files (x86)\\nodejs\\node.exe\" server.js"
 end
