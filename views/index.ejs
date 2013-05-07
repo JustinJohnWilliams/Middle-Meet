@@ -87,6 +87,7 @@
 
     function save() {
       var question = {
+        id: GUID(),
         text: $('#questionText').val(),
         answers: [
           { text: $('#answer1').val(), isCorrect: !!$("#chkbox1").attr('checked') },
@@ -94,7 +95,7 @@
           { text: $('#answer3').val(), isCorrect: !!$("#chkbox3").attr('checked') },
           { text: $('#answer4').val(), isCorrect: !!$("#chkbox4").attr('checked') }
         ],
-        categories: ["","","",""]
+        categories: $('#categories').val().split(',')
       };
 
       $.post("/createQuestion",
