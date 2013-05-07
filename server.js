@@ -30,6 +30,7 @@ app.get('/questions', function(req, res) {
 app.post('/createQuestion', function(req, res) {
   get("questions", function(obj) {
     if (!obj) obj = []; 
+    console.log(req.body);
     obj.push(req.body);
     save("questions", obj, function() {
       res.writeHead(200, { 'Content-Type': 'application/json' });

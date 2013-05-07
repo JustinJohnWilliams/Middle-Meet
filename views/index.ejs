@@ -49,22 +49,18 @@
     <div class="container">
       <div class="row">
         <form>
-          <input type="text" id="questionText" />
+          <textarea placeholder="question" id="questionText"></textarea>
           <br />
           <br />
-          <input type="checkbox" id="chkbox1" />
-          <input type="text" id="answer1" />
-          <br />
-          <input type="checkbox" id="chkbox2" />
-          <input type="text" id="answer2" />
-          <br />
-          <input type="checkbox" id="chkbox3" />
-          <input type="text" id="answer3" />
-          <br />
-          <input type="checkbox" id="chkbox4" />
-          <input type="text" id="answer4" />
-          <br />
-          <input type="text" value="categories" id="categories" />
+          <textarea placeholder="answer1" id="answer1"></textarea>
+          <input type="checkbox" id="chkbox1" /><br/>
+          <textarea placeholder="answer2" id="answer2"></textarea>
+          <input type="checkbox" id="chkbox2" /><br/>
+          <textarea placeholder="answer3" id="answer3"></textarea>
+          <input type="checkbox" id="chkbox3" /><br/>
+          <textarea placeholder="answer4" id="answer4"></textarea>
+          <input type="checkbox" id="chkbox4" /><br/>
+          <input type="text" placeholder="categories" id="categories" />
           <br />
           <br />
           <input type="button" value="create" id="create" class="btn btn-primary" />
@@ -90,8 +86,19 @@
     }
 
     function save() {
+      var question = {
+        text: $('#questionText').val(),
+        answers: [
+          { text: $('#answer1').val(), isCorrect: !!$("#chkbox1").attr('checked') },
+          { text: $('#answer2').val(), isCorrect: !!$("#chkbox2").attr('checked') },
+          { text: $('#answer3').val(), isCorrect: !!$("#chkbox3").attr('checked') },
+          { text: $('#answer4').val(), isCorrect: !!$("#chkbox4").attr('checked') }
+        ],
+        categories: ["","","",""]
+      };
+
       $.post("/createQuestion",
-        { text: $('#questionText').val() },
+        question,
         function() {
           getQuestions();
         });
