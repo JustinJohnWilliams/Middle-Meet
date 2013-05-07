@@ -48,6 +48,7 @@
     </div>
     <div class="container">
       <div class="row">
+        <input type="text" id="questionText" />
         <input type="button" value="create" id="create" class="btn btn-primary" />
       </div>
     </div>
@@ -58,7 +59,7 @@
     });
 
     function save() {
-      $.post("/save", { message: "booya", another: "hello" });
+      $.post("/createQuestion", { text: $('#questionText').val() });
     }
 
     function GUID(){

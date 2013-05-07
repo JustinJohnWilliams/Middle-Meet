@@ -18,9 +18,20 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-app.post('/save', function(req, res) {
-  save("message", req.body);
-  get("message", function(obj) {
+app.get('/questions', function(req, resp) {
+  get("questions", function(obj) {
+    console.log(JSON.stringify(obj));
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.write(JSON.stringify(obj));
+    res.end();
+  });
+});
+
+app.post('/createQuestion', function(req, res) {
+  get("questions", function(obj) {
+    if (!obj)  obj = []; 
+    obj.push(req.body);
+    save("questions", obj);
     console.log(obj.message);
   });
 });
