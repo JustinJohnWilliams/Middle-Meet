@@ -18,6 +18,10 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
+app.get('/interview', function (req, res) {
+  res.render('interview');
+});
+
 app.get('/questions', function(req, res) {
   get("questions", function(obj) {
     if (!obj) obj = []; 
