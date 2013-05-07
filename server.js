@@ -1,5 +1,7 @@
 var express = require('express');
-var app = express()
+var redis = require('redis');
+var client = redis.createClient();
+var app = express();
 var server = require('http').createServer(app);
 var Game = require('./game.js')
 
@@ -17,8 +19,21 @@ app.get('/', function (req, res) {
 });
 
 app.post('/save', function(req, res) {
-  console.log('yay posting');
+  save("message", req.body);
+  get("message", function(obj) {
+    console.log(obj.message);
+  });
 });
+
+function save(key, obj) {
+  client.set(key, JSON.stringify(obj), redis.print);
+}
+
+function get(key, callback) {
+  client.get(key, function(err, reply) {
+    callback(JSON.parse(reply));
+  });
+}
 
 /*
 app.get('/game', function (req, res) {
