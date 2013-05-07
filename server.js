@@ -18,9 +18,9 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-app.get('/questions', function(req, resp) {
+app.get('/questions', function(req, res) {
   get("questions", function(obj) {
-    console.log(JSON.stringify(obj));
+    if (!obj) obj = []; 
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.write(JSON.stringify(obj));
     res.end();
@@ -29,7 +29,7 @@ app.get('/questions', function(req, resp) {
 
 app.post('/createQuestion', function(req, res) {
   get("questions", function(obj) {
-    if (!obj)  obj = []; 
+    if (!obj) obj = []; 
     obj.push(req.body);
     save("questions", obj);
     console.log(obj.message);
