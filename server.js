@@ -31,13 +31,15 @@ app.post('/createQuestion', function(req, res) {
   get("questions", function(obj) {
     if (!obj) obj = []; 
     obj.push(req.body);
-    save("questions", obj);
-    console.log(obj.message);
+    save("questions", obj, function() {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end();
+    });
   });
 });
 
-function save(key, obj) {
-  client.set(key, JSON.stringify(obj), redis.print);
+function save(key, obj, callback) {
+  client.set(key, JSON.stringify(obj), callback);
 }
 
 function get(key, callback) {
