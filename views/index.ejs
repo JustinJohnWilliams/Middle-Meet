@@ -58,14 +58,24 @@
   <script type="text/javascript">
     $(function() {
       $("#create").click(save);
-      $.getJSON("/questions", function(data) {
-        $("#questions").html("");
-        $("#questions").append(_.template($("#questionsTemplate").html(), data));
-      }); 
+      getQuestions();
     });
 
+    function getQuestions() {
+      $.getJSON("/questions", function(questions) {
+        $("#questions").html("");
+        _.each(questions, function(question) {
+          $("#questions").append($("<div></div>").html(question.text));
+        });
+      }); 
+    }
+
     function save() {
-      $.post("/createQuestion", { text: $('#questionText').val() });
+      $.post("/createQuestion",
+        { text: $('#questionText').val() },
+        function() {
+          getQuestions();
+        });
     }
 
     function GUID(){
@@ -77,14 +87,6 @@
     };
 
   </script>
-
-  <script type="underscore/template" id="questionsTemplate">
-    <% _.each(questions, function(question) { %>
-      <div class='row'>
-        <%= question.text %>
-      </div>
-    <% }); %>
-</script>
 </html>
 
 
