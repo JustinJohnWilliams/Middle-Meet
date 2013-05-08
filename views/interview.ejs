@@ -18,6 +18,25 @@
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
+
+      .question {
+        font-size: 16px;
+        line-height: 25px;
+        color: #FFFFFF;
+        background-color: #2c2c2c;
+      }
+
+      .choice {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 25px;
+      }
+
+      .category {
+        float: right !important;
+        font-size: 12.5px;
+        text-align: center;
+      }
     </style>
     <link href="/public/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -36,7 +55,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Multi-Libs</a>
+          <a class="brand" href="/">QnA Sidekick</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
             </ul>
@@ -45,100 +64,216 @@
       </div>
     </div>
     <div class="container">
-      <div id="buttonNextRound" class="row">
-        <input placeholder="category" class="span3"></input>
-        <a href="javascript:;" class="btn btn-primary">load</a>
-      </div>
       <div class="row">
-      </div>
-      <br />
-      <table class="table">
-        <thead>
+        <h2>Candidate Summary</h2>
+        <hr/>
+        <input placeholder="enter candidate name" class="span3 input-large"></input>
+        <input placeholder="enter candidate email" class="span3 input-large"></input>
+        <br/>
+        <br/>
+        <textarea class="span8" rows="5" placeholder="notes"></textarea>
+        <hr/>
+        <h2>Question Summary</h2>
+        <hr/>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Score</th>
+            </tr>
+          </thead>
           <tr>
-            <th>Topic</th>
-            <th>Score</th>
+            <td class="span2">csharp</td>
+            <td><span class="badge badge-success">2/2</span></td>
           </tr>
-        </thead>
-        <tr>
-          <td>C#</td>
-          <td><span class="badge badge-success">5/5</span></td>
-        </tr>
-        <tr>
-          <td>ASP.net MVC</td>
-          <td><span class="badge badge-important">1/5</span></td>
-        </tr>
-        <tr>
-          <td>WCF</td>
-          <td><span class="badge badge-warning">3/5</span></td>
-        </tr>
-      </table>
+          <tr>
+            <td class="span2">aspnetmvc</td>
+            <td><span class="badge badge-important">0/1</span></td>
+          </tr>
+          <tr>
+            <td class="span2">wcf</td>
+            <td><span class="badge badge-warning">1/2</span></td>
+          </tr>
+        </table>
+      </div>
+      <div id="buttonNextRound" class="row">
+        <h2>Questions</h2>
+        <hr/>
+        <input style="font-size: 20px; padding: 5px;" placeholder="enter category" class="span3 input-large"></input>
+        <a href="javascript:;" class="btn-large btn btn-primary">load more questions</a>
+      </div>
       <hr />
-      <div id="blackCard" class="row well" style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px; color: #FFFFFF; background-color: #2c2c2c;">What's that sound?</div>
+      
+      <!-- question start -->
+      <div id="blackCard" class="row well question" style="">
+        When creating your own extension methods, the class containing the method must be:
+      </div>
       <div class="row">
         <table class="table">
-          <tbody id="whitCardSelection">
-            <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Being on fire.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
-            </tr>
-            <tr> <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Repression.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+          <tbody>
+            <tr class="alert alert-success">
+              <td class="choice">static</td>
             </tr>
             <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">A beached whale.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+              <td class="choice">public</td>
             </tr>
             <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Stranger danger.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+              <td class="choice">internal</td>
+            </tr>
+            <tr>
+              <td class="choice">protected</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div id="blackCard" class="row well" style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px; color: #FFFFFF; background-color: #2c2c2c;">What's that sound?</div>
+      <div class="row">
+        <div class="span1 badge category">csharp</div>
+        <div>candidate answered:</div>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <button type="button" class="btn btn-success active">correctly</button>
+          <button type="button" class="btn">incorrectly</button>
+          <button type="button" class="btn">did not know</button>
+        </div>
+      </div>
+      <div class="row"><hr/></div>
+      <!-- question end -->
+
+      <!-- question start -->
+      <div id="blackCard" class="row well question" style="">
+        If a method on a class is defined implicitly, what is the default access modifer?
+      </div>
       <div class="row">
         <table class="table">
-          <tbody id="whitCardSelection">
-            <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Being on fire.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
-            </tr>
-            <tr> <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Repression.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+          <tbody>
+            <tr class="choice">
+              <td class="choice">public</td>
             </tr>
             <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">A beached whale.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+              <td class="choice">internal</td>
             </tr>
             <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Stranger danger.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+              <td class="choice alert alert-success">private</td>
+            </tr>
+            <tr>
+              <td class="choice">protected</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div id="blackCard" class="row well" style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px; color: #FFFFFF; background-color: #2c2c2c;">What's that sound?</div>
+      <div class="row">
+        <div class="span1 badge category">csharp</div>
+        <div>candidate answered:</div>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <button type="button" class="btn active btn-success">correctly</button>
+          <button type="button" class="btn">incorrectly</button>
+          <button type="button" class="btn">did not know</button>
+        </div>
+      </div>
+      <div class="row"><hr/></div>
+      <!-- question end -->
+
+      <!-- question start -->
+      <div id="blackCard" class="row well question" style="">
+        Which one of the following methods is NOT defined on the core Controller class in ASP.NET MVC?
+      </div>
       <div class="row">
         <table class="table">
-          <tbody id="whitCardSelection">
-            <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Being on fire.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
-            </tr>
-            <tr> <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Repression.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+          <tbody>
+            <tr class="choice">
+              <td class="choice">Json</td>
             </tr>
             <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">A beached whale.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+              <td class="choice">View</td>
             </tr>
             <tr>
-              <td style="text-align: center; font-weight: bold; font-size: 16px; line-height: 25px;">Stranger danger.</td>
-              <td class="span2"><a href="javascript:;" class="btn">select</a></td>
+              <td class="choice">Content</td>
+            </tr>
+            <tr>
+              <td class="choice alert alert-success">Success</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <div class="row">
+        <div class="span1 badge category">aspnetmvc</div>
+        <div>candidate answered:</div>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <button type="button" class="btn">correctly</button>
+          <button type="button" class="btn btn-danger active">incorrectly</button>
+          <button type="button" class="btn">did not know</button>
+        </div>
+      </div>
+      <div class="row"><hr/></div>
+      <!-- question end -->
+
+      <!-- question start -->
+      <div id="blackCard" class="row well question" style="">
+        What command line tool will generate a proxy off of a WCF endpoint?
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="choice">regsvc.exe</td>
+            </tr>
+            <tr>
+              <td class="choice">wsdl.exe</td>
+            </tr>
+            <tr class="alert alert-success">
+              <td class="choice">svcutil.exe</td>
+            </tr>
+            <tr>
+              <td class="choice">Visual Studio can be executed via the command line to generate a proxy</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="span1 badge category">wcf</div>
+        <div>candidate answered:</div>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <button type="button" class="btn active btn-success">correctly</button>
+          <button type="button" class="btn">incorrectly</button>
+          <button type="button" class="btn">did not know</button>
+        </div>
+      </div>
+      <div class="row"><hr/></div>
+      <!-- question end -->
+
+      <!-- question start -->
+      <div id="blackCard" class="row well question">
+        Which WCF binding does *NOT* support callbacks?
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="choice">NetTcpBinding</td>
+            </tr>
+            <tr class="choice alert alert-success">
+              <td class="choice">WSHttpBinding</td>
+            </tr>
+            <tr>
+              <td class="choice">NetNamedPipeBinding</td>
+            </tr>
+            <tr>
+              <td class="choice">All of the bindings mentioned support callbacks</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="span1 badge category">wcf</div>
+        <div>candidate answered:</div>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <button type="button" class="btn">correctly</button>
+          <button type="button" class="btn">incorrectly</button>
+          <button type="button" class="btn active btn-warning">did not know</button>
+        </div>
+      </div>
+      <div class="row"><hr/></div>
+      <!-- question end -->
+
     </div> <!-- /container -->
   </body>
 </html>
